@@ -6,39 +6,90 @@ public class Jump : MonoBehaviour
 {
 
     [SerializeField] private float jumpingPower;
-    [SerializeField] private float fallingPower;
-    [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
-    Vector2 vecGravity;
-    private Rigidbody2D rb;
+    Rigidbody2D rb;
+
+    //Coyote Time
+    const float COYOTE_TIME = 0.2f;
+    float fallTimer = COYOTE_TIME;
+    bool justJumped = false;
+
+    //Buffer Jump
+    const float BUFFER_TIME = 0.1f;
+    bool hasBufferedJump = false;
+    float sinceBufferedJump = 0f;
 
     // Start is called before the first frame update
     void Start()
     {
-        vecGravity = new Vector2(0f, -Physics2D.gravity.y);
         rb = GetComponent<Rigidbody2D>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        _Jump();
+        JumpInput();
     }
 
-    private void _Jump() {
-        if (Input.GetKey(KeyCode.Space) && isGrounded())
+    private void JumpInput() {
+        CoyoteTime();
+        BufferJump();
+        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
+            _Jump();
+    }
+
+    private void _Jump()
+    {
+        rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+    }
+
+    private void BufferJump()
+    {
+        if (Input.GetKeyDown(KeyCode.Space) && !IsGrounded())
         {
-            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);   
+            hasBufferedJump = true;
+            sinceBufferedJump = 0f;
         }
 
-        if(rb.velocity.y < 0f)
+        if(hasBufferedJump)
         {
-            rb.velocity -= vecGravity * fallingPower * Time.deltaTime;
+            sinceBufferedJump += Time.deltaTime;
+            if(sinceBufferedJump >= BUFFER_TIME)
+            {
+                sinceBufferedJump = 0f;
+                hasBufferedJump = false;
+            }
+        }
+
+        if(hasBufferedJump && IsGrounded())
+        {
+            _Jump();
+            hasBufferedJump = false;
+            sinceBufferedJump = 0f;
         }
     }
 
-    private bool isGrounded() {
-        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.8f, 0.3f), CapsuleDirection2D.Horizontal, 0, groundLayer);
+    private void CoyoteTime()
+    {
+        if (!IsGrounded())
+            fallTimer -= Time.deltaTime;
+        else
+        {
+            fallTimer = COYOTE_TIME;
+            justJumped = false;
+        }
+
+        if(Input.GetKeyDown(KeyCode.Space) && !justJumped && fallTimer > 0f)
+        {
+            _Jump();
+            justJumped = true;
+        }
+
+
+    }
+
+    private bool IsGrounded() {
+        return Physics2D.Raycast(transform.position, Vector2.down, 0.6f, groundLayer);
     }
 }
