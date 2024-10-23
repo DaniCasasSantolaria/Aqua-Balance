@@ -5,15 +5,18 @@ using UnityEngine;
 public class Jump : MonoBehaviour
 {
 
-    [SerializeField] private float jumpingPower = 16f;
+    [SerializeField] private float jumpingPower;
+    [SerializeField] private float fallingPower;
     [SerializeField] private Transform groundCheck;
     [SerializeField] private LayerMask groundLayer;
 
+    Vector2 vecGravity;
     private Rigidbody2D rb;
 
     // Start is called before the first frame update
     void Start()
     {
+        vecGravity = new Vector2(0f, -Physics2D.gravity.y);
         rb = GetComponent<Rigidbody2D>();
     }
 
@@ -28,13 +31,14 @@ public class Jump : MonoBehaviour
         {
             rb.velocity = new Vector2(rb.velocity.x, jumpingPower);   
         }
-        if (Input.GetKey(KeyCode.Space) && rb.velocity.y > 0f)
+
+        if(rb.velocity.y < 0f)
         {
-            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            rb.velocity -= vecGravity * fallingPower * Time.deltaTime;
         }
     }
 
     private bool isGrounded() {
-        return Physics2D.OverlapCircle(groundCheck.position, 0.2f, groundLayer);
+        return Physics2D.OverlapCapsule(groundCheck.position, new Vector2(1.8f, 0.3f), CapsuleDirection2D.Horizontal, 0, groundLayer);
     }
 }
