@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 382653655}
   - component: {fileID: 382653657}
   - component: {fileID: 382653656}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Suelo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -253,6 +253,37 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &386861005
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 386861006}
+  m_Layer: 0
+  m_Name: GroundCheck
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &386861006
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 386861005}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.471, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1836531870}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &628717429
 GameObject:
   m_ObjectHideFlags: 0
@@ -264,7 +295,7 @@ GameObject:
   - component: {fileID: 628717430}
   - component: {fileID: 628717432}
   - component: {fileID: 628717431}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pared Derecha
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -394,7 +425,7 @@ GameObject:
   - component: {fileID: 715837438}
   - component: {fileID: 715837440}
   - component: {fileID: 715837439}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 3
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -522,7 +553,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 776170680}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bordes mapa
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -592,7 +623,7 @@ GameObject:
   - component: {fileID: 874184513}
   - component: {fileID: 874184515}
   - component: {fileID: 874184514}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Techo
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -722,7 +753,7 @@ GameObject:
   - component: {fileID: 912117382}
   - component: {fileID: 912117384}
   - component: {fileID: 912117383}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -886,7 +917,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 990207717}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Plataformas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -938,7 +969,8 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1408735453}
   m_Father: {fileID: 969640272}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -953,7 +985,7 @@ GameObject:
   - component: {fileID: 1202502495}
   - component: {fileID: 1202502497}
   - component: {fileID: 1202502496}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pared Izquierda (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -968,7 +1000,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1202502494}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.5, y: 5.5, z: 0}
+  m_LocalPosition: {x: -8.5, y: 5.5, z: 0}
   m_LocalScale: {x: 1, y: 3, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1083,7 +1115,7 @@ GameObject:
   - component: {fileID: 1338948119}
   - component: {fileID: 1338948121}
   - component: {fileID: 1338948120}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1278,13 +1310,13 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1408735451}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -0.1066, y: -0.288, z: 0}
   m_LocalScale: {x: 31.4446, y: 17.078394, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 1081046230}
+  m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1452666861
 GameObject:
@@ -1298,7 +1330,7 @@ GameObject:
   - component: {fileID: 1452666865}
   - component: {fileID: 1452666864}
   - component: {fileID: 1452666863}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Caja
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1313,7 +1345,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1452666861}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -12, y: 2, z: 0}
+  m_LocalPosition: {x: -11.5, y: 2, z: 0}
   m_LocalScale: {x: 2, y: 2, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1377,7 +1409,7 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 40
   m_LinearDrag: 0
   m_AngularDrag: 0.05
   m_GravityScale: 1
@@ -1476,7 +1508,8 @@ Transform:
   m_LocalPosition: {x: -10.5, y: -6.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 386861006}
   m_Father: {fileID: 792763929}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1492,6 +1525,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9d9e0103140fa984cb2a2abafe3b4057, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpingPower: 15
+  groundLayer:
+    serializedVersion: 2
+    m_Bits: 64
 --- !u!114 &1836531872
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1506,6 +1543,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   initialX: -10.5
   initialY: -6.5
+  speed: 5
 --- !u!61 &1836531873
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1563,11 +1601,11 @@ Rigidbody2D:
   m_Simulated: 1
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
-  m_Mass: 1
+  m_Mass: 3
   m_LinearDrag: 0
   m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
+  m_GravityScale: 4
+  m_Material: {fileID: 6200000, guid: 96afe65f58abcbf41bd1d2b96b99dc31, type: 2}
   m_IncludeLayers:
     serializedVersion: 2
     m_Bits: 0
@@ -1577,7 +1615,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!212 &1836531875
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1641,7 +1679,7 @@ GameObject:
   - component: {fileID: 2097723320}
   - component: {fileID: 2097723322}
   - component: {fileID: 2097723321}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pared Izquierda
   m_TagString: Untagged
   m_Icon: {fileID: 0}
