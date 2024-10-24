@@ -12,13 +12,11 @@ public class Jump : MonoBehaviour
 
     //Coyote Time
     const float COYOTE_TIME = 0.2f;
-    float fallTimer = COYOTE_TIME;
-    bool justJumped = false;
+    float coyoteTimeCounter = COYOTE_TIME;
 
     //Buffer Jump
-    const float BUFFER_TIME = 0.1f;
-    bool hasBufferedJump = false;
-    float sinceBufferedJump = 0f;
+    const float BUFFER_TIME = 0.13f;
+    float bufferTimer = 0f;
 
     // Start is called before the first frame update
     void Start()
@@ -29,64 +27,50 @@ public class Jump : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        Debug.DrawRay(transform.position, Vector2.down * 0.6f, Color.red);
         JumpInput();
     }
 
     private void JumpInput() {
         CoyoteTime();
         BufferJump();
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-            _Jump();
+        _Jump();
     }
 
     private void _Jump()
     {
-        rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+        if (bufferTimer > 0f && coyoteTimeCounter > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, jumpingPower);
+            bufferTimer = 0f;
+        }
+        if (Input.GetButtonUp("Jump") && rb.velocity.y > 0f)
+        {
+            rb.velocity = new Vector2(rb.velocity.x, rb.velocity.y * 0.5f);
+            coyoteTimeCounter = 0f; 
+        }
     }
 
     private void BufferJump()
     {
-        if (Input.GetKeyDown(KeyCode.Space) && !IsGrounded())
+        if (Input.GetButtonDown("Jump"))
         {
-            hasBufferedJump = true;
-            sinceBufferedJump = 0f;
+            bufferTimer = BUFFER_TIME;
         }
-
-        if(hasBufferedJump)
+        else
         {
-            sinceBufferedJump += Time.deltaTime;
-            if(sinceBufferedJump >= BUFFER_TIME)
-            {
-                sinceBufferedJump = 0f;
-                hasBufferedJump = false;
-            }
-        }
-
-        if(hasBufferedJump && IsGrounded())
-        {
-            _Jump();
-            hasBufferedJump = false;
-            sinceBufferedJump = 0f;
+            bufferTimer -= Time.deltaTime;
         }
     }
 
     private void CoyoteTime()
     {
         if (!IsGrounded())
-            fallTimer -= Time.deltaTime;
+            coyoteTimeCounter -= Time.deltaTime;
         else
         {
-            fallTimer = COYOTE_TIME;
-            justJumped = false;
+            coyoteTimeCounter = COYOTE_TIME;
         }
-
-        if(Input.GetKeyDown(KeyCode.Space) && !justJumped && fallTimer > 0f)
-        {
-            _Jump();
-            justJumped = true;
-        }
-
-
     }
 
     private bool IsGrounded() {
